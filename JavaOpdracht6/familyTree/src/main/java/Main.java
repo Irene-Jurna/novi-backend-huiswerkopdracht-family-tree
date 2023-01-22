@@ -1,6 +1,10 @@
 // Vraag: had ik mijn opdracht FamilyTree met hoofdletter moeten noemen, in plaats van familyTree?
 // Ik mis de org.example map, is dat een probleem?
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -19,24 +23,25 @@ public class Main {
 
         System.out.println(martin.getMiddleName());
 
-        irene.addParents(hanneke, martin);
+        irene.addParents(hanneke, martin, irene);
         System.out.println(irene.getMother().getName());
 
-        // Hier komt een handler uit (Person@372f7a8d). Hoe kan ik ervoor zorgen dat de namen van de kinderen uitgeprint worden?
+        // Hier komt een handler uit (Person@372f7a8d). Hoe kan ik ervoor zorgen dat de namen van de kinderen uitgeprint worden? (dezelfde vraag bij de methode addPet onderaan in Main)
         joris.addChild(joris, moos);
         System.out.println(joris.getChildren());
 
-        // Deze methode werkt niet (komt null uit). Hoe kan ik dit werkend krijgen?
+        ArrayList<Person> siblingList = new ArrayList<>();
         irene.addSibling(irene, moos);
-        System.out.println(irene.getSiblings());
+        siblingList.add(moos);
+        System.out.println(siblingList.get(0).getName());
 
         // Methode getGrandChildren snap ik niet
 //        martin.getGrandChildren();
 
-        // Deze methode werkt ook niet (komt null uit).
         irene.addPet(irene, stoffer);
         irene.addPet(irene, kela);
         irene.addPet(irene, punk);
         irene.getPets();
+        System.out.println(irene.getPets());
     }
 }

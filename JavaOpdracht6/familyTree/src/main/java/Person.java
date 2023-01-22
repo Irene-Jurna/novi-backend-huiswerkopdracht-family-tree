@@ -115,29 +115,40 @@ public class Person {
     }
 
     // Methods
-    public void addParents(Person mother, Person father) {
-        setMother(mother);
-        setFather(father);
+    public void addParents(Person mother, Person father, Person child) {
+        child.setMother(mother);
+        child.setFather(father);
+
+        addChild(mother, child);
+        addChild(father, child);
     }
 
     public void addChild(Person parent, Person child) {
         List<Person> kids = new ArrayList<>();
-        kids.add(child);
-        children = kids;
+        if (parent.getChildren() != null) {
+            // For-loop zonder index. 'c' is de naam van de variabele binnen de for-lus
+            for (Person c : parent.getChildren()) {
+                kids.add(c);
+            }
+        } else {
+            kids.add(child);
+        }
         parent.setChildren(kids);
     }
 
     public void addSibling(Person person, Person sibling) {
         List<Person> siblingsList = new ArrayList<>();
+        if (person.getSiblings() != null) {
+            siblingsList.addAll(getSiblings());
+        }
         siblingsList.add(sibling);
-        siblingsList = siblings;
         person.setSiblings(siblingsList);
-
     }
 
     // Uit de huiswerkles, maar ik begrijp deze methode niet
-    public List<Person> getGrandChildren() {
-        ArrayList<Person> grandchildren = new ArrayList<>();
+    public List<Person> getGrandChildren(Person person) {
+        // Vraag: wat is het verschil in het gebruik van ArrayList<> en List<> op de volgende regel?
+        List<Person> grandchildren = new ArrayList<>();
         for (Person child : children) {
             for (Person grandChild : child.getChildren()) {
                 grandchildren.addAll(grandChild.getChildren());
@@ -148,6 +159,9 @@ public class Person {
 
     public void addPet(Person owner, Pet pet) {
         List<Pet> petsList = new ArrayList<>();
+        if (owner.getPets() != null) {
+            petsList.addAll(owner.getPets());
+        }
         petsList.add(pet);
         owner.setPets(petsList);
     }

@@ -50,5 +50,4 @@ public class PetTest {
         // Assert
         assertEquals("Irene", owner);
     }
-
 }

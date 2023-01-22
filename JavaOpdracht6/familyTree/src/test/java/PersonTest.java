@@ -17,7 +17,7 @@ class PersonTest {
         Person martin = new Person("Martin", "Gerardus", "Jurna", 60, "male");
 
         // Act
-        irene.addParents(hanneke, martin);
+        irene.addParents(hanneke, martin, irene);
 
         // Assert
         assertEquals("Hanneke", irene.getMother().getName());
@@ -41,7 +41,7 @@ class PersonTest {
     }
 
     @Test
-    void should_Return_Siblings(){
+    void should_Return_Siblings() {
         // Arrange
         Person irene = new Person("Irene", "Judith", "Jurna", 32, "female");
         Person moos = new Person("Moos", "Joas", "Jurna", 0, "male");
@@ -55,23 +55,30 @@ class PersonTest {
 
         // Assert
         assertEquals(siblingList, irene.getSiblings());
+
+        /*
+        Of (uit huiswerkklas Johan):
+        assertEquals("Moos", irene.getSiblings().get(0).getName());
+         */
     }
 
     @Test
-    void shoud_Return_GrandChildren(){
+    void shoud_Return_GrandChildren() {
         // Arrange
         Person martin = new Person("Martin", "Gerardus", "Jurna", 60, "male");
         Person moos = new Person("Moos", "Joas", "Jurna", 0, "male");
 
         // Act
+        // Vergelijking
         ArrayList<Person> grandchildren = new ArrayList<>();
         grandchildren.add(moos);
+
+        // En dan hier de methode toevoegen, maar die begreep ik niet (zie Person.java)
 
         // Assert
         // ???
     }
 
-    // Note: deze test klopt niet, want ik vergelijk irene.setPets met irene.setPets.
     @Test
     void should_Return_Pet() {
         // Arrange
@@ -89,8 +96,6 @@ class PersonTest {
         pets.add(stoffer);
         pets.add(punk);
         pets.add(kela);
-
-        irene.setPets(pets);
 
         // Arrange
         assertEquals(pets, irene.getPets());
